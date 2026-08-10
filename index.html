@@ -411,9 +411,61 @@
 
   .cert-verify:hover{color:var(--accent); border-color:var(--accent);}
   .cert-verify svg{width:11px; height:11px;}
+  
+  /* Updated Hero Section Styling */
+    .hero-section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--line-soft);
+      margin-bottom: 40px;
+    }
 
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Centers the content to fill blank space */
+      gap: 60px; /* Increased gap for better breathing room */
+      max-width: 900px;
+      margin: 0 auto; /* Keeps it centered in the wrap */
+    }
+
+    .profile-pic {
+      width: 220px; /* Increased from 150px */
+      height: 220px; /* Increased from 150px */
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent); /* Slightly thicker border */
+      box-shadow: 0 4px 25px var(--accent-dim);
+      flex-shrink: 0; /* Prevents the image from squishing */
+    }
+
+    .hero-name {
+      font-size: 3rem; /* Slightly larger name */
+      color: var(--text);
+      margin-bottom: 10px;
+      font-family: 'Fraunces', serif;
+    }
+
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+      max-width: 500px;
+      line-height: 1.6;
+      min-height: 60px; /* Prevents layout jumping while typing */
+    }
+
+    /* Blinking cursor for the typing effect */
+    .typing-cursor::after {
+      content: '|';
+      color: var(--accent);
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
   /* ===== Certifications grid ===== */
-
+ 
   .cert-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -513,7 +565,25 @@
 
   <main>
     <div class="wrap">
-
+      <!-- HERO SECTION -->
+        <section class="hero-section">
+          <div class="hero-content">
+            <img src="profile.jpeg" alt="Khushi Singh" class="profile-pic">
+            
+            <div class="hero-text">
+              <h1 class="hero-name">Khushi Singh</h1>
+              <p class="hero-tagline typing-cursor" id="typewriter">
+                
+              </p>
+              
+              <div class="hero-actions">
+                <a href="Khushi_Singh_Resume.pdf" download class="btn-primary">
+                  <i class="codicon codicon-desktop-download"></i> Download Resume (PDF)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       <!-- ===================== PROJECTS ===================== -->
       <section class="section" id="projects">
         <div class="section-head">
@@ -761,6 +831,26 @@
     document.documentElement.style.scrollBehavior = 'auto';
   }
 </script>
+<script>
+    const textToType = "Software Engineering student specializing in MERN stack development, cloud architecture, and AI integrations.";
+    const typeElement = document.getElementById("typewriter");
+    let textIndex = 0;
+
+    function typeWriter() {
+      if (textIndex < textToType.length) {
+        typeElement.innerHTML += textToType.charAt(textIndex);
+        textIndex++;
+        setTimeout(typeWriter, 35); // Adjust speed here (lower is faster)
+      } else {
+        // Optional: Remove cursor after typing finishes
+        // typeElement.classList.remove("typing-cursor");
+      }
+    }
+
+    // Start the typing effect when the page loads
+    window.addEventListener("load", typeWriter);
+  </script>
+
 
 </body>
 </html>
